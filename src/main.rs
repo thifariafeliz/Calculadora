@@ -3,8 +3,19 @@ mod func;
 // importa tudo (*) do módulo `func`
 use func::*;
 
-
 fn main() {
+
+    let triangulo_pascal: Vec<Vec<i32>> = pascal(20);
+
+    for i in 0..20 {
+        for j in 0..20 {
+            if triangulo_pascal[i][j] != 0 {
+                print!("{:5} ", triangulo_pascal[i][j]);
+            }
+        }
+        println!();
+    }
+
     loop {
         println!("\nEscolha a operação que deseja fazer:");
         println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões\n0. Sair");

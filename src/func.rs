@@ -1,6 +1,25 @@
 use std::io;
 // a palavra-chave `pub` nos permite usar a função no arquivo que está importando este arquivo.
 
+pub fn pascal(tamanho: usize) -> Vec<Vec<i32>> {
+    let mut pascal: Vec<Vec<i32>> = vec![vec![0; tamanho]; tamanho];
+
+    pascal[0][0] = 1;
+
+    for i in 0..tamanho {
+        for j in 0..tamanho {
+            if j == 0 {
+                pascal[i][j] = 1;
+            }
+            if i >= 1 && j >= 1{
+                pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j];
+            }
+        }
+    }
+
+    pascal
+}
+
 // Função recursiva para calcular o fatorial de um número
 pub fn fatorial(numero: i32) -> i32 {
     // Essa função será chamada consecutivamente várias vezes até que `numero` seja igual a 0
