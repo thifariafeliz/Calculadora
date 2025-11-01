@@ -60,9 +60,8 @@ fn main() {
                     println!("Valores menores que 1 não são válidos para ordem ou classe de um número binomial. Tente novamente.");
                     continue;
                 }
-
-                //let binomial: i32 = binomial();
-                //println!("O número binomial de ordem {} e classe {} é = {}", n, k, binomial);
+                 let binomial: i32 = binomial(n, k);
+                     println!("O número binomial de ordem {} e classe {} é = {}", n, k, binomial);    
             },
             4 => {
                 println!("\n=======COMBINAÇÃO=======");
@@ -76,8 +75,9 @@ fn main() {
                     continue;
                 }
 
-                //let combinacao: i32 = combinacao();
-                //println!("O número de combinações com {} elementos tomados de {} em {} é = {}", elementos, lugares, lugares, combinacao);
+                let combinacao: i32 = combinacao(elementos, lugares);
+                   println!("O número de combinações possíveis com {} elementos tomados de {} em {} é = {}", elementos, lugares, lugares, combinacao);
+
             },
             5 => {
                 println!("\n=======PERMUTAÇÃO SIMPLES=======");
