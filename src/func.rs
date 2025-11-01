@@ -26,13 +26,14 @@ pub fn arranjo() -> i32 {
 
 }
 
+
 pub fn binomial(n: i32, k: i32) -> i32 {
     if k < 0 || k > n {
         return 0; // fora do domínio
     }
     fatorial(n) / (fatorial(k) * fatorial(n - k))
 }
-}
+
 
 pub fn combinacao(elementos: i32, lugares: i32) -> i32 {
     if lugares < 0 || lugares > elementos {
@@ -40,6 +41,7 @@ pub fn combinacao(elementos: i32, lugares: i32) -> i32 {
     }
     fatorial(elementos) / (fatorial(lugares) * fatorial(elementos - lugares))
 }
+
 
 
 pub fn permutacao_simples() -> i32 {
