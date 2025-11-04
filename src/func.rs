@@ -25,11 +25,12 @@ pub fn potencia(base: i32, pot: i32) -> i32 {
 pub fn arranjo() -> i32 {
 
 }
+*/
 
 
 pub fn binomial(n: i32, k: i32) -> i32 {
     if k < 0 || k > n {
-        return 0; // fora do domínio
+        return 0; 
     }
     fatorial(n) / (fatorial(k) * fatorial(n - k))
 }
@@ -42,8 +43,7 @@ pub fn combinacao(elementos: i32, lugares: i32) -> i32 {
     fatorial(elementos) / (fatorial(lugares) * fatorial(elementos - lugares))
 }
 
-
-
+/*
 pub fn permutacao_simples() -> i32 {
 
 }
