@@ -6,7 +6,8 @@ use func::*;
 fn main() {
     loop {
         println!("\nEscolha a operação que deseja fazer:");
-        println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões\n0. Sair");
+        println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões\n
+            7. Adição de matrizes\n8. Subtração de matrizes\n9.Multiplicação de matrizes\n10. Determinante de matrizes\n0. Sair");
         let input: i32 = pega_inteiro();
 
         if input == -1 {
@@ -114,6 +115,18 @@ fn main() {
                 let permutacao: i32 = permutacao_repeticao(elementos, repeticoes);
 
                 println!("A quantidade de permutações de {} elementos {} elementos repetidos é = {}", elementos, quant, permutacao);
+            },
+            7 => {
+
+            },
+            8 => {
+
+            },
+            9 => {
+
+            },
+            10 => {
+
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
                 println!("Opção inválida. Tente novamente.");
