@@ -142,7 +142,7 @@ fn main() {
         }
     }
 
-                let resultado = adicao_matrizes_calc(mat1, mat2);
+                let resultado = adicao_matrizes(mat1, mat2);
 
                 println!("\nResultado da adição:");
                 for linha in resultado {
