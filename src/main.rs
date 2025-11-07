@@ -47,8 +47,8 @@ fn main() {
                     continue;
                 }
 
-                //let arrj: i32 = arranjo();
-                //println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
+               let arrj: i32 = arranjo();
+               println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
             3 => {
                 println!("\n=======BINOMIAL=======");
@@ -90,8 +90,8 @@ fn main() {
                     continue;
                 }
 
-                //let permutacao = permutacao();
-                //println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
+                let permutacao = permutacao();
+                println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
             },
             6 => {
                 println!("\n=======PERMUTAÇÃO COM REPETIÇÃO=======");
