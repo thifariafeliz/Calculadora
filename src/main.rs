@@ -228,6 +228,37 @@ fn main() {
 
             },
             10 => {
+                println!("\n======= DETERMINANTE DE MATRIZES =======");
+                println!("Digite o número de linhas:");
+                let linhas: i32 = pega_inteiro();
+                println!("Digite o número de colunas:");
+               let colunas: i32 = pega_inteiro();
+
+               let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+               let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+ 
+               println!("\nDigite os valores da primeira matriz:");
+                 for i in 0..linhas {
+                    for j in 0..colunas {
+               println!("mat1[{}][{}] =", i, j);
+              mat1[i as usize][j as usize] = pega_inteiro();
+    }
+}
+
+              println!("\nDigite os valores da segunda matriz:");
+               for i in 0..linhas {
+               for j in 0..colunas {
+              println!("mat2[{}][{}] =", i, j);
+             mat2[i as usize][j as usize] = pega_inteiro();
+    }
+}
+
+            let resultado = determinante_matrizes(mat1, mat2);
+
+            println!("\nResultado da subtração:");
+            for linha in resultado {
+            println!("{:?}", linha);
+    
 
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
