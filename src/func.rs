@@ -25,11 +25,14 @@ pub fn potencia(base: i32, pot: i32) -> i32 {
     base * potencia(base, pot - 1)
 }
 
-/*
-pub fn arranjo() -> i32 {
-
+pub fn arranjo(n: i32, p: i32) -> i32 {
+    if p > n {
+        println!("Erro: p não pode ser maior que n!");
+        return 0;
+    }
+    fatorial(n) / fatorial(n - p)
 }
-*/
+
 
 pub fn binomial(n: i32, k: i32) -> i32 {
     if k < 0 || k > n {
@@ -45,11 +48,13 @@ pub fn combinacao(elementos: i32, lugares: i32) -> i32 {
     fatorial(elementos) / (fatorial(lugares) * fatorial(elementos - lugares))
 }
 
-/*
 pub fn permutacao_simples() -> i32 {
+    let n = 5;
+    let mut resultado = 1;
 
-}
-*/
+    for i in 1..=n {
+        resultado *= i;
+    }
 
 // Calcula a quantidade de permutações com repetição
 pub fn permutacao_repeticao(elementos: i32, repeticoes: Vec<i32>) -> i32 {
