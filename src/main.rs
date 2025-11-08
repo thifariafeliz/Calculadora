@@ -48,7 +48,7 @@ fn main() {
                 }
 
                 // V FALTOU ARGUMENTO
-                let arrj: i32 = arranjo();
+                let arrj: i32 = arranjo(n, p);
                 println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
             3 => {
@@ -91,7 +91,7 @@ fn main() {
                     continue;
                 }
 
-                let permutacao = permutacao();
+                let permutacao = permutacao(elementos, permutacao);
                 println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
             },
             6 => {
