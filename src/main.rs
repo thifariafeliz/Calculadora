@@ -47,7 +47,7 @@ fn main() {
                     continue;
                 }
 
-                // V FALTOU ARGUMENTO
+                
                 let arrj: i32 = arranjo(elementos, lugares);
                 println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
