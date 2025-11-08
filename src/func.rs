@@ -56,6 +56,8 @@ pub fn permutacao_simples() -> i32 {
         resultado *= i;
     }
 
+    resultado
+}
 // Calcula a quantidade de permutações com repetição
 pub fn permutacao_repeticao(elementos: i32, repeticoes: Vec<i32>) -> i32 {
     let mut denominador: i32 = 1;
@@ -141,6 +143,7 @@ pub fn multiplicacao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<V
     }
 
     resultado
+
 }
 
 pub fn determinante_matrizes(matriz: Vec<Vec<i32>>) -> i32 {
@@ -152,4 +155,5 @@ pub fn determinante_matrizes(matriz: Vec<Vec<i32>>) -> i32 {
     let determinante: i32 = (matriz[1][1] * matriz[2][2]) - (matriz[2][1] * matriz[1][2]);
 
     determinante
+    
 }

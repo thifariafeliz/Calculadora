@@ -47,8 +47,9 @@ fn main() {
                     continue;
                 }
 
-               let arrj: i32 = arranjo();
-               println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
+                // V FALTOU ARGUMENTO
+                let arrj: i32 = arranjo();
+                println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
             3 => {
                 println!("\n=======BINOMIAL=======");
@@ -131,60 +132,56 @@ fn main() {
                     for j in 0..colunas {
                         println!("mat1[{}][{}] =", i, j);
                         mat1[i as usize][j as usize] = pega_inteiro();
-        }
-    }
+                    }
+                }
 
                 println!("\nDigite os valores da segunda matriz:");
                 for i in 0..linhas {
                     for j in 0..colunas {
                         println!("mat2[{}][{}] =", i, j);
                         mat2[i as usize][j as usize] = pega_inteiro();
-        }
-    }
+                    }
+                }
 
                 let resultado = adicao_matrizes(mat1, mat2);
 
                 println!("\nResultado da adição:");
                 for linha in resultado {
                     println!("{:?}", linha);
-    }
-}
-
+                }
             },
             8 => { 
                 println!("\n======= SUBTRAÇÃO DE MATRIZES =======");
                 println!("Digite o número de linhas:");
                 let linhas: i32 = pega_inteiro();
                 println!("Digite o número de colunas:");
-               let colunas: i32 = pega_inteiro();
+                let colunas: i32 = pega_inteiro();
 
-               let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-               let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
  
-               println!("\nDigite os valores da primeira matriz:");
-                 for i in 0..linhas {
+                println!("\nDigite os valores da primeira matriz:");
+                for i in 0..linhas {
                     for j in 0..colunas {
-               println!("mat1[{}][{}] =", i, j);
-              mat1[i as usize][j as usize] = pega_inteiro();
-    }
-}
+                        println!("mat1[{}][{}] =", i, j);
+                        mat1[i as usize][j as usize] = pega_inteiro();
+                    }
+                }
 
-              println!("\nDigite os valores da segunda matriz:");
-               for i in 0..linhas {
-               for j in 0..colunas {
-              println!("mat2[{}][{}] =", i, j);
-             mat2[i as usize][j as usize] = pega_inteiro();
-    }
-}
+                println!("\nDigite os valores da segunda matriz:");
+                for i in 0..linhas {
+                    for j in 0..colunas {
+                    println!("mat2[{}][{}] =", i, j);
+                    mat2[i as usize][j as usize] = pega_inteiro();
+                    }
+                }               
 
-            let resultado = subtracao_matrizes(mat1, mat2);
+                let resultado = subtracao_matrizes(mat1, mat2);
 
-            println!("\nResultado da subtração:");
-            for linha in resultado {
-            println!("{:?}", linha);
-
-
-    
+                println!("\nResultado da subtração:");
+                for linha in resultado {
+                    println!("{:?}", linha);
+                }
             },
             9 => {
                 println!("\n======= MULTIPLICAÇÃO DE MATRIZES =======");
@@ -204,27 +201,27 @@ fn main() {
                 let mut mat2: Vec<Vec<i32>> = vec![vec![0; c2 as usize]; l2 as usize];
 
                 println!("\nDigite os valores da primeira matriz:");
-                    for i in 0..l1 {
+                for i in 0..l1 {
                     for j in 0..c1 {
-                println!("mat1[{}][{}] =", i, j);
-                mat1[i as usize][j as usize] = pega_inteiro();
-    }
-}
+                        println!("mat1[{}][{}] =", i, j);
+                        mat1[i as usize][j as usize] = pega_inteiro();
+                    }
+                }
 
                 println!("\nDigite os valores da segunda matriz:");
                 for i in 0..l2 {
-                for j in 0..c2 {
-                println!("mat2[{}][{}] =", i, j);
-                mat2[i as usize][j as usize] = pega_inteiro();
-    }        
-}
+                    for j in 0..c2 {
+                        println!("mat2[{}][{}] =", i, j);
+                        mat2[i as usize][j as usize] = pega_inteiro();
+                    }        
+                }
 
                 let resultado = multiplicacao_matrizes(mat1, mat2);
 
                 println!("\nResultado da multiplicação:");
                 for linha in resultado {
-                 println!("{:?}", linha);
-}
+                    println!("{:?}", linha);
+                }
 
             },
             10 => {
@@ -232,34 +229,33 @@ fn main() {
                 println!("Digite o número de linhas:");
                 let linhas: i32 = pega_inteiro();
                 println!("Digite o número de colunas:");
-               let colunas: i32 = pega_inteiro();
+                let colunas: i32 = pega_inteiro();
 
-               let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-               let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
  
-               println!("\nDigite os valores da primeira matriz:");
-                 for i in 0..linhas {
+                println!("\nDigite os valores da primeira matriz:");
+                for i in 0..linhas {
                     for j in 0..colunas {
-               println!("mat1[{}][{}] =", i, j);
-              mat1[i as usize][j as usize] = pega_inteiro();
-    }
-}
+                        println!("mat1[{}][{}] =", i, j);
+                        mat1[i as usize][j as usize] = pega_inteiro();
+                    }
+                }
 
-              println!("\nDigite os valores da segunda matriz:");
-               for i in 0..linhas {
-               for j in 0..colunas {
-              println!("mat2[{}][{}] =", i, j);
-             mat2[i as usize][j as usize] = pega_inteiro();
-    }
-}
+                println!("\nDigite os valores da segunda matriz:");
+                for i in 0..linhas {
+                    for j in 0..colunas {
+                        println!("mat2[{}][{}] =", i, j);
+                        mat2[i as usize][j as usize] = pega_inteiro();
+                    }
+                }
 
-            let resultado = determinante_matrizes(mat1, mat2);
+                let resultado = determinante_matrizes(mat1, mat2);
 
-            println!("\nResultado da subtração:");
-            for linha in resultado {
-            println!("{:?}", linha);
-    
-
+                println!("\nResultado da subtração:");
+                for linha in resultado {
+                    println!("{:?}", linha);
+                }
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
                 println!("Opção inválida. Tente novamente.");
