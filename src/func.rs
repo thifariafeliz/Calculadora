@@ -48,16 +48,10 @@ pub fn combinacao(elementos: i32, lugares: i32) -> i32 {
     fatorial(elementos) / (fatorial(lugares) * fatorial(elementos - lugares))
 }
 
-pub fn permutacao_simples() -> i32 {
-    let n = 5;
-    let mut resultado = 1;
-
-    for i in 1..=n {
-        resultado *= i;
-    }
-
-    resultado
+pub fn permutacao_simples(n: i32) -> i32 {
+    fatorial(n)
 }
+
 // Calcula a quantidade de permutações com repetição
 pub fn permutacao_repeticao(elementos: i32, repeticoes: Vec<i32>) -> i32 {
     let mut denominador: i32 = 1;
