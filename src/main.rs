@@ -243,10 +243,8 @@ fn main() {
 
                 let resultado = determinante_matrizes(mat1);
 
-                println!("\nResultado da subtração:");
-                for linha in resultado {
-                    println!("{:?}", linha);
-                }
+                println!("\nDeterminante da Matriz {}", resultado);
+            
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
                 println!("Opção inválida. Tente novamente.");
