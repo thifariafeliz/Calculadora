@@ -6,8 +6,8 @@ use func::*;
 fn main() {
     loop {
         println!("\nEscolha a operação que deseja fazer:");
-        println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões\n
-            7. Adição de matrizes\n8. Subtração de matrizes\n9.Multiplicação de matrizes\n10. Determinante de matrizes\n0. Sair");
+        println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões
+7. Adição de matrizes\n8. Subtração de matrizes\n9. Multiplicação de matrizes\n10. Determinante de matrizes\n0. Sair");
         let input: i32 = pega_inteiro();
 
         if input == -1 {
@@ -40,14 +40,14 @@ fn main() {
                 let elementos: i32 = pega_inteiro();
                 println!("Digite a quantidade de lugares em que os números serão arranjados:");
                 let lugares: i32 = pega_inteiro();
-            
+
                 // Verifica se algum número digitado foi menor que 1
                 if elementos < 1 || lugares < 1 {
                     println!("Valores menores que 1 não são válidos para elementos e lugares no arranjo. Tente novamente.");
                     continue;
                 }
 
-                
+
                 let arrj: i32 = arranjo(elementos, lugares);
                 println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
@@ -159,7 +159,7 @@ fn main() {
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
                 let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
- 
+
                 println!("\nDigite os valores da primeira matriz:");
                 for i in 0..linhas {
                     for j in 0..colunas {
@@ -232,7 +232,7 @@ fn main() {
                 let colunas: i32 = pega_inteiro();
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
- 
+
                 println!("\nDigite os valores da matriz:");
                 for i in 0..linhas {
                     for j in 0..colunas {
@@ -244,7 +244,7 @@ fn main() {
                 let resultado = determinante_matrizes(mat1);
 
                 println!("\nDeterminante da Matriz {}", resultado);
-            
+
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
                 println!("Opção inválida. Tente novamente.");

@@ -146,7 +146,7 @@ pub fn determinante_matrizes(matriz: Vec<Vec<i32>>) -> i32 {
         return -98765;
     }
 
-    let determinante: i32 = (matriz[1][1] * matriz[2][2]) - (matriz[2][1] * matriz[1][2]);
+    let determinante: i32 = (matriz[0][0] * matriz[1][1]) - (matriz[1][0] * matriz[0][1]);
 
     determinante
     
