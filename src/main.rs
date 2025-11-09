@@ -91,7 +91,7 @@ fn main() {
                     continue;
                 }
 
-                let permutacao = permutacao(elementos);
+                let permutacao = permutacao_simples(elementos);
                 println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
             },
             6 => {
