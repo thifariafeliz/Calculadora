@@ -232,9 +232,8 @@ fn main() {
                 let colunas: i32 = pega_inteiro();
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-                let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
  
-                println!("\nDigite os valores da primeira matriz:");
+                println!("\nDigite os valores da matriz:");
                 for i in 0..linhas {
                     for j in 0..colunas {
                         println!("mat1[{}][{}] =", i, j);
@@ -242,15 +241,7 @@ fn main() {
                     }
                 }
 
-                println!("\nDigite os valores da segunda matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                        println!("mat2[{}][{}] =", i, j);
-                        mat2[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
-
-                let resultado = determinante_matrizes(mat1, mat2);
+                let resultado = determinante_matrizes(mat1);
 
                 println!("\nResultado da subtração:");
                 for linha in resultado {
