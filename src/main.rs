@@ -1,7 +1,30 @@
-// cria um módulo para o arquivo `func.rs`
 mod func;
-// importa tudo (*) do módulo `func`
 use func::*;
+mod matrizes;
+use matrizes::*;
+use std::io;
+
+
+// Pega um valor inteiro a partir da digitação do usuário
+pub fn pega_inteiro() -> i32 {
+    // Cria uma nova string para armazenar a linha do usuário
+    let mut input = String::new();
+
+    // função que pega input do usuário
+    io::stdin()
+        .read_line(&mut input) //precisa passar como referência mutável
+        .expect("Falha na leitura do input do usuário."); // precisa do expect em caso de falha
+
+    // faz um match que verifica se o número, depois de `trim` pode ser convertido para `i32` por
+    // meio de `.parse::<i32>()`
+    match input.trim().parse::<i32>() {
+        // em caso positivo retorna o número digitado
+        Ok(num) => num,
+        // em caso negativo retorna `-1`, neste programa é válido já que não usaremos valores
+        // negativos em momento algum.
+        Err(_) => -1,
+    }
+}
 
 fn main() {
     loop {

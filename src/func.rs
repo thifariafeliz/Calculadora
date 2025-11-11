@@ -1,6 +1,3 @@
-use std::io;
-// a palavra-chave `pub` nos permite usar a função no arquivo que está importando este arquivo.
-
 // Função recursiva para calcular o fatorial de um número
 pub fn fatorial(numero: i32) -> i32 {
     // Essa função será chamada consecutivamente várias vezes até que `numero` seja igual a 0
@@ -11,18 +8,6 @@ pub fn fatorial(numero: i32) -> i32 {
     // da penúltima função chamada, 2 * 1 retorna 2, assim sucessiivamente até chegar ao número
     // primordial passado para a primeira execução da função `fatorial`
     numero * fatorial(numero - 1)
-}
-
-// Função para calcular um número elevado a uma potência, sendo `base` o número, e `pot` a potência
-pub fn potencia(base: i32, pot: i32) -> i32 {
-    // Parecida com a função `fatorial`, será chamada várias vezes até que o argumento `pot` seja 0
-    if pot == 0 {
-        return 1;
-    };
-
-    // Quando 1 for retornado, a base irá multiplicar este valor, e depois o resultado será sempre
-    // multiplicado pela base. Assim é como se fosse: 10*1=10, 10*10=100, 100*10=1000
-    base * potencia(base, pot - 1)
 }
 
 pub fn arranjo(n: i32, p: i32) -> i32 {
@@ -65,89 +50,3 @@ pub fn permutacao_repeticao(elementos: i32, repeticoes: Vec<i32>) -> i32 {
     fatorial(elementos) / denominador
 }
 
-// Pega um valor inteiro a partir da digitação do usuário
-pub fn pega_inteiro() -> i32 {
-    // Cria uma nova string para armazenar a linha do usuário
-    let mut input = String::new();
-
-    // função que pega input do usuário
-    io::stdin()
-        .read_line(&mut input) //precisa passar como referência mutável
-        .expect("Falha na leitura do input do usuário."); // precisa do expect em caso de falha
-
-    // faz um match que verifica se o número, depois de `trim` pode ser convertido para `i32` por
-    // meio de `.parse::<i32>()`
-    match input.trim().parse::<i32>() {
-        // em caso positivo retorna o número digitado
-        Ok(num) => num,
-        // em caso negativo retorna `-1`, neste programa é válido já que não usaremos valores
-        // negativos em momento algum.
-        Err(_) => -1,
-    }
-}
-
-pub fn adicao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    if mat1.len() != mat2.len() || mat1[0].len() != mat2[0].len() {
-        println!("erro! as matrizes devem ter colunas iguais, assim como suas colunas.");
-        return vec![];
-    }
-
-    let mut resultado: Vec<Vec<i32>> = vec![vec![0; mat1[0].len()]; mat1.len()];
-
-    for i in 0..mat1.len() {
-        for j in 0..mat1[0].len() {
-            resultado[i][j] = mat1[i][j] + mat2[i][j];
-        }
-    }
-
-    resultado
-}
-
-pub fn subtracao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    if mat1.len() != mat2.len() || mat1[0].len() != mat2[0].len() {
-        println!("erro! as matrizes devem ter colunas iguais, assim como suas colunas.");
-        return vec![];
-    }
-
-    let mut resultado: Vec<Vec<i32>> = vec![vec![0; mat1[0].len()]; mat1.len()];
-
-    for i in 0..mat1.len() {
-        for j in 0..mat1[0].len() {
-            resultado[i][j] = mat1[i][j] - mat2[i][j];
-        }
-    }
-
-    resultado
-}
-
-pub fn multiplicacao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    if mat1[0].len() != mat2.len() {
-        println!("Erro! O número de colunas da primeira matriz deve corresponder ao número de linhas da segunda matriz.");
-        return vec![];
-    }
-
-    let mut resultado: Vec<Vec<i32>> = vec![vec![0; mat1.len()]; mat2[0].len()];
-
-    for i in 0..mat1.len() {
-        for j in 0..mat2[0].len() {
-            for k in 0..mat1[0].len() {
-                resultado[i][j] = mat1[i][k] * mat2[k][j];
-            }
-        }
-    }
-
-    resultado
-
-}
-
-pub fn determinante_matrizes(matriz: Vec<Vec<i32>>) -> i32 {
-    if matriz.len() != 2 && matriz[0].len() != 2 {
-        println!("Erro! A matriz deve ser quadrada de ordem 2.");
-        return -98765;
-    }
-
-    let determinante: i32 = (matriz[0][0] * matriz[1][1]) - (matriz[1][0] * matriz[0][1]);
-
-    determinante
-    
-}
