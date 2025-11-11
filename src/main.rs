@@ -7,15 +7,16 @@ use pascal::*;
 use std::io::{self, Write};
 
 pub fn pega_inteiro() -> i32 {
-    let mut input = String::new();
+    loop {
+        let mut input = String::new();
 
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Falha na leitura do input do usuário.");
+        io::stdin().read_line(&mut input).expect("Falha na leitura do input do usuário.");
 
-    match input.trim().parse::<i32>() {
-        Ok(num) => num,
-        Err(_) => -1,
+        if let Ok(num) = input.trim().parse::<i32>() {
+            return num;
+        } else {
+            println!("Não foi possível converter para número. Digite um valor inteiro válido:");
+        }
     }
 }
 
