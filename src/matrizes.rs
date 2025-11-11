@@ -1,3 +1,4 @@
+// Função que faz a soma de duas matrizes e retorna a matriz resultado
 pub fn adicao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     if mat1.len() != mat2.len() || mat1[0].len() != mat2[0].len() {
         println!("erro! as matrizes devem ter colunas iguais, assim como suas colunas.");
@@ -15,6 +16,7 @@ pub fn adicao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>
     resultado
 }
 
+// Função que faz subtração de duas matrizes e retorna a matriz resultado
 pub fn subtracao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     if mat1.len() != mat2.len() || mat1[0].len() != mat2[0].len() {
         println!("erro! as matrizes devem ter colunas iguais, assim como suas colunas.");
@@ -32,6 +34,7 @@ pub fn subtracao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i
     resultado
 }
 
+// Função que faz a multiplicação de duas matrizes e retorna a matriz resultado
 pub fn multiplicacao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     if mat1[0].len() != mat2.len() {
         println!("Erro! O número de colunas da primeira matriz deve corresponder ao número de linhas da segunda matriz.");
@@ -52,14 +55,7 @@ pub fn multiplicacao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<V
 
 }
 
+// Função que determina o determinante de uma matriz 2x2 e retorna um número inteiro
 pub fn determinante_matrizes(matriz: Vec<Vec<i32>>) -> i32 {
-    if matriz.len() != 2 && matriz[0].len() != 2 {
-        println!("Erro! A matriz deve ser quadrada de ordem 2.");
-        return -98765;
-    }
-
-    let determinante: i32 = (matriz[0][0] * matriz[1][1]) - (matriz[1][0] * matriz[0][1]);
-
-    determinante
-    
+    (matriz[0][0] * matriz[1][1]) - (matriz[1][0] * matriz[0][1])
 }

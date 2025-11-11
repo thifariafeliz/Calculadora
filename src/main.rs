@@ -1,27 +1,20 @@
-mod func;
-use func::*;
+mod combinatoria;
+use combinatoria::*;
 mod matrizes;
 use matrizes::*;
-use std::io;
+mod pascal;
+use pascal::*;
+use std::io::{self, Write};
 
-
-// Pega um valor inteiro a partir da digitação do usuário
 pub fn pega_inteiro() -> i32 {
-    // Cria uma nova string para armazenar a linha do usuário
     let mut input = String::new();
 
-    // função que pega input do usuário
     io::stdin()
-        .read_line(&mut input) //precisa passar como referência mutável
-        .expect("Falha na leitura do input do usuário."); // precisa do expect em caso de falha
+        .read_line(&mut input)
+        .expect("Falha na leitura do input do usuário.");
 
-    // faz um match que verifica se o número, depois de `trim` pode ser convertido para `i32` por
-    // meio de `.parse::<i32>()`
     match input.trim().parse::<i32>() {
-        // em caso positivo retorna o número digitado
         Ok(num) => num,
-        // em caso negativo retorna `-1`, neste programa é válido já que não usaremos valores
-        // negativos em momento algum.
         Err(_) => -1,
     }
 }
@@ -30,7 +23,7 @@ fn main() {
     loop {
         println!("\nEscolha a operação que deseja fazer:");
         println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões
-7. Adição de matrizes\n8. Subtração de matrizes\n9. Multiplicação de matrizes\n10. Determinante de matrizes\n0. Sair");
+7. Adição de matrizes\n8. Subtração de matrizes\n9. Multiplicação de matrizes\n10. Determinante de matrizes\n11. Triângulo de Pascal\n0. Sair");
         let input: i32 = pega_inteiro();
 
         if input == -1 {
@@ -43,22 +36,22 @@ fn main() {
                 break;
             },
             1 => {
-                println!("\n=======FATORIAL=======");
+                println!("\n======= FATORIAL =======");
                 println!("Digite um número para ver seu fatorial:");
                 let numero: i32 = pega_inteiro();
 
                 // Verifica se o número digitado é negativo
                 if numero < 0 {
-                    println!("Número inválido. Tente novamente.");
+                    println!("Não é possível obter o fatorial de um número negativo. Tente novamente.");
                     continue;
                 }
 
                 let fat: i32 = fatorial(numero);
                 
                 println!("O fatorial de {} é = {}", numero, fat);
-            }
+            },
             2 => {
-                println!("\n=======ARRANJO=======");
+                println!("\n======= ARRANJO =======");
                 println!("Digite a quantidade de elementos que deseja arranjar:");
                 let elementos: i32 = pega_inteiro();
                 println!("Digite a quantidade de lugares em que os números serão arranjados:");
@@ -68,6 +61,9 @@ fn main() {
                 if elementos < 1 || lugares < 1 {
                     println!("Valores menores que 1 não são válidos para elementos e lugares no arranjo. Tente novamente.");
                     continue;
+                } else if lugares > elementos {
+                    println!("O número de lugares não pode ser maior que o número de elementos no arranjo. Tente novamente.");
+                    continue;
                 }
 
 
@@ -75,7 +71,7 @@ fn main() {
                 println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
             3 => {
-                println!("\n=======BINOMIAL=======");
+                println!("\n======= BINOMIAL =======");
                 println!("Digite a ordem do número binomial:");
                 let n: i32 = pega_inteiro();
                 println!("Digite a classe do número binomial:");
@@ -84,12 +80,16 @@ fn main() {
                 if n < 1 || k < 1 {
                     println!("Valores menores que 1 não são válidos para ordem ou classe de um número binomial. Tente novamente.");
                     continue;
+                } else if k > n {
+                    println!("O número da classe não pode ser maior que o número da ordem no número binoial. Tente Novamente.");
+                    continue;
                 }
-                 let binomial: i32 = binomial(n, k);
-                     println!("O número binomial de ordem {} e classe {} é = {}", n, k, binomial);    
+
+                let binomial: i32 = binomial(n, k);
+                println!("O número binomial de ordem {} e classe {} é = {}", n, k, binomial);    
             },
             4 => {
-                println!("\n=======COMBINAÇÃO=======");
+                println!("\n======= COMBINAÇÃO =======");
                 println!("Digite o número de elementos a serem combinados:");
                 let elementos: i32 = pega_inteiro();
                 println!("Digite o número de lugares em que os elementos serão combinados:");
@@ -98,6 +98,9 @@ fn main() {
                 if elementos < 1 || lugares < 1 {
                     println!("Valores menores que 1 não são válidos para o número de elementos ou lugares. Tente novamente.");
                     continue;
+                } else if lugares > elementos {
+                    println!("O número de lugares não pode ser maior que o núemro de elementos na combinação. Tente novamente.");
+                    continue;
                 }
 
                 let combinacao: i32 = combinacao(elementos, lugares);
@@ -105,7 +108,7 @@ fn main() {
 
             },
             5 => {
-                println!("\n=======PERMUTAÇÃO SIMPLES=======");
+                println!("\n======= PERMUTAÇÃO SIMPLES =======");
                 println!("Digite a quantidade de elementos que serão permutados:");
                 let elementos: i32 = pega_inteiro();
 
@@ -118,12 +121,28 @@ fn main() {
                 println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
             },
             6 => {
-                println!("\n=======PERMUTAÇÃO COM REPETIÇÃO=======");
+                println!("\n======= PERMUTAÇÃO COM REPETIÇÃO =======");
                 println!("Digite a quantidade de elementos que serão permutados:");
                 let elementos: i32 = pega_inteiro();
                 println!("Digite a quantidade de elementos que se repetem:");
                 let quant: i32 = pega_inteiro();
+
+                if quant > elementos {
+                    println!("Não é possível que a quantidade de elementos que se repetem seja maior que a quantidade de elementos total. Tente novamente.");
+                    continue;
+                }
+
                 let mut repeticoes: Vec<i32> = Vec::new();  // cria um vetor para armazenar valores i32
+                let mut soma_repeticoes: i32 = 0;
+
+                for i in 0..repeticoes.len() {
+                    soma_repeticoes += repeticoes[i];
+                }
+
+                if soma_repeticoes > elementos {
+                    println!("Não é possível que o total de repetições seja maior que o número de elementos. Tente novamente.");
+                    continue;
+                }
 
                 if elementos < 1 || quant < 1{
                     println!("Valores menores que 1 não são válidos para elementos, quantidade de repetições e repetições. Tente novamente.");
@@ -146,6 +165,10 @@ fn main() {
                 let linhas: i32 = pega_inteiro();
                 println!("Digite o número de colunas:");
                 let colunas: i32 = pega_inteiro();
+
+                if linhas < 1 || colunas < 1 {
+                    println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
+                }
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
                 let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
@@ -179,6 +202,10 @@ fn main() {
                 let linhas: i32 = pega_inteiro();
                 println!("Digite o número de colunas:");
                 let colunas: i32 = pega_inteiro();
+
+                if linhas < 1 || colunas < 1 {
+                    println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
+                }
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
                 let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
@@ -219,6 +246,11 @@ fn main() {
                 println!("Digite o número de colunas da segunda matriz:");
                 let c2: i32 = pega_inteiro();
 
+                if l1 < 1 || c1 < 1 || l2 < 1 || c2 < 1 {
+                    println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
+                    continue;
+                }
+
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; c1 as usize]; l1 as usize];
                 let mut mat2: Vec<Vec<i32>> = vec![vec![0; c2 as usize]; l2 as usize];
@@ -249,16 +281,12 @@ fn main() {
             },
             10 => {
                 println!("\n======= DETERMINANTE DE MATRIZES =======");
-                println!("Digite o número de linhas:");
-                let linhas: i32 = pega_inteiro();
-                println!("Digite o número de colunas:");
-                let colunas: i32 = pega_inteiro();
 
-                let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                let mut mat1: Vec<Vec<i32>> = vec![vec![0; 2]; 2];
 
                 println!("\nDigite os valores da matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
+                for i in 0..2 {
+                    for j in 0..2 {
                         println!("mat1[{}][{}] =", i, j);
                         mat1[i as usize][j as usize] = pega_inteiro();
                     }
@@ -266,8 +294,39 @@ fn main() {
 
                 let resultado = determinante_matrizes(mat1);
 
-                println!("\nDeterminante da Matriz {}", resultado);
+                println!("\nDeterminante da Matriz = {}", resultado);
 
+            },
+            11 => {
+                println!("======= TRIÂNGULO DE PASCAL =======");
+                println!("Digite a quantidade de linhas no seu Triângulo de Pascal (> 2 > 35):");
+                let linhas: i32 = pega_inteiro();
+                println!("Digite a quantidade de colunas no seu Triângulo de Pascal (> 2 > 35):");
+                let colunas: i32 = pega_inteiro();
+
+                if linhas < 3 || colunas < 3 {
+                    println!("O número de linhas E colunas deve ser ao menos 3. Tente novamente.");
+                    continue;
+                } else if linhas > 35 || colunas > 35 {
+                    println!("Seja razoável e escolha um número menor que 35 para linhas e colunas. Tente novamente.");
+                    continue;
+                }
+
+                let triangulo: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
+                
+                let triangulo = pascal(triangulo);
+
+                println!("\nTRIÂNGULO DE PASCAL");
+
+                for i in 0..linhas {
+                    for j in 0..colunas {
+                        if triangulo[i as usize][j as usize] != 0 {
+                            print!("{:4} ", triangulo[i as usize][j as usize]);
+                            io::stdout().flush().unwrap();
+                        }
+                    }
+                    println!();
+                }
             },
             _ => {  // mesmo que default em C, mas obrigatório neste caso.
                 println!("Opção inválida. Tente novamente.");
