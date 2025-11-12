@@ -52,7 +52,6 @@ pub fn multiplicacao_matrizes(mat1: Vec<Vec<i32>>, mat2: Vec<Vec<i32>>) -> Vec<V
     }
 
     resultado
-
 }
 
 // Função que determina o determinante de uma matriz 2x2 e retorna um número inteiro
