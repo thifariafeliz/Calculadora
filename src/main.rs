@@ -2,9 +2,7 @@ mod combinatoria;
 use combinatoria::*;
 mod matrizes;
 use matrizes::*;
-mod pascal;
-use pascal::*;
-use std::io::{self, Write};
+use std::io;
 
 pub fn pega_inteiro() -> i32 {
     loop {
@@ -300,38 +298,6 @@ fn main() {
                 let resultado = determinante_matrizes(mat1);
 
                 println!("\nDeterminante da Matriz = {}", resultado);
-            },
-
-            11 => {
-                println!("======= TRIÂNGULO DE PASCAL =======");
-                println!("Digite a quantidade de linhas no seu Triângulo de Pascal (> 2 > 35):");
-                let linhas: i32 = pega_inteiro();
-                println!("Digite a quantidade de colunas no seu Triângulo de Pascal (> 2 > 35):");
-                let colunas: i32 = pega_inteiro();
-
-                if linhas < 3 || colunas < 3 {
-                    println!("O número de linhas E colunas deve ser ao menos 3. Tente novamente.");
-                    continue;
-                } else if linhas > 35 || colunas > 35 {
-                    println!("Seja razoável e escolha um número menor que 35 para linhas e colunas. Tente novamente.");
-                    continue;
-                }
-
-                let triangulo: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-                
-                let triangulo = pascal(triangulo);
-
-                println!("\nTRIÂNGULO DE PASCAL");
-
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                        if triangulo[i as usize][j as usize] != 0 {
-                            print!("{:4} ", triangulo[i as usize][j as usize]);
-                            io::stdout().flush().unwrap();
-                        }
-                    }
-                    println!();
-                }
             },
 
             _ => { 
