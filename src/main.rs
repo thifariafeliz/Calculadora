@@ -192,6 +192,11 @@ fn main() {
 
                 let resultado = adicao_matrizes(mat1, mat2);
 
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
+                
                 println!("\nResultado da adição:");
                 for linha in resultado {
                     println!("{:?}", linha);
@@ -229,6 +234,11 @@ fn main() {
                 }               
 
                 let resultado = subtracao_matrizes(mat1, mat2);
+                
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
 
                 println!("\nResultado da subtração:");
                 for linha in resultado {
@@ -276,6 +286,11 @@ fn main() {
 
                 let resultado = multiplicacao_matrizes(mat1, mat2);
 
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
+
                 println!("\nResultado da multiplicação:");
                 for linha in resultado {
                     println!("{:?}", linha);
@@ -296,6 +311,8 @@ fn main() {
                 }
 
                 let resultado = determinante_matrizes(mat1);
+
+
 
                 println!("\nDeterminante da Matriz = {}", resultado);
             },
