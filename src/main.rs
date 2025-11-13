@@ -2,7 +2,7 @@ mod combinatoria;
 use combinatoria::*;
 mod matrizes;
 use matrizes::*;
-use std::io;
+use std::io::{self, Write};
 
 pub fn pega_inteiro() -> i32 {
     loop {
@@ -151,8 +151,6 @@ fn main() {
                     println!("Não é possível que o total de repetições seja maior que o número de elementos. Tente novamente.");
                     continue;
                 }
-
-                println!("{soma_repeticoes}");
                 
                 let permutacao: i32 = permutacao_repeticao(elementos, repeticoes);
 
@@ -168,7 +166,7 @@ fn main() {
 
                 if linhas < 1 || colunas < 1 {
                     println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
-                continue;
+                    continue;
                 }
 
                 let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
@@ -181,7 +179,7 @@ fn main() {
                         mat1[i as usize][j as usize] = pega_inteiro();
                     }
                 }
-
+ ..
                 println!("\nDigite os valores da segunda matriz:");
                 for i in 0..linhas {
                     for j in 0..colunas {
@@ -192,9 +190,18 @@ fn main() {
 
                 let resultado = adicao_matrizes(mat1, mat2);
 
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
+                
                 println!("\nResultado da adição:");
-                for linha in resultado {
-                    println!("{:?}", linha);
+                for i in 0..linhas {
+                    for j in 0..colunas {
+                        print!("{} ", resultado[i as usize][j as usize]);
+                        io::stdout().flush().unwrap();
+                    }
+                    println!();
                 }
             },
 
@@ -229,10 +236,19 @@ fn main() {
                 }               
 
                 let resultado = subtracao_matrizes(mat1, mat2);
+                
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
 
                 println!("\nResultado da subtração:");
-                for linha in resultado {
-                    println!("{:?}", linha);
+                for i in 0..linhas {
+                    for j in 0..colunas {
+                        print!("{} ", resultado[i as usize][j as usize]);
+                        io::stdout().flush().unwrap();
+                    }
+                    println!();
                 }
             },
 
@@ -271,14 +287,23 @@ fn main() {
                     for j in 0..c2 {
                         println!("mat2[{}][{}] =", i, j);
                         mat2[i as usize][j as usize] = pega_inteiro();
-                    }        
+                    }
                 }
 
                 let resultado = multiplicacao_matrizes(mat1, mat2);
 
+                if resultado.is_empty() {
+                    println!("Erro, resultado voltou um vetor vazio. Tente novamente.");
+                    continue;
+                }
+
                 println!("\nResultado da multiplicação:");
-                for linha in resultado {
-                    println!("{:?}", linha);
+                for i in 0..l1 {
+                    for j in 0..c2 {
+                        print!("{} ", resultado[i as usize][j as usize]);
+                        io::stdout().flush().unwrap();
+                    }
+                    println!();
                 }
             },
 
@@ -296,6 +321,8 @@ fn main() {
                 }
 
                 let resultado = determinante_matrizes(mat1);
+
+
 
                 println!("\nDeterminante da Matriz = {}", resultado);
             },
