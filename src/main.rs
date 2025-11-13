@@ -2,28 +2,19 @@ mod combinatoria;
 use combinatoria::*;
 mod matrizes;
 use matrizes::*;
-use std::io;
-
-pub fn pega_inteiro() -> i32 {
-    loop {
-        let mut input = String::new();
-
-        io::stdin().read_line(&mut input).expect("Falha na leitura do input do usuário.");
-
-        if let Ok(num) = input.trim().parse::<i32>() {
-            return num;
-        } else {
-            println!("Não foi possível converter para número. Digite um valor inteiro válido:");
-        }
-    }
-}
+mod utils;
+use utils::*;
 
 fn main() {
     loop {
         println!("\nEscolha a operação que deseja fazer:");
         println!("1. Fatorial\n2. Arranjo\n3. Binomial\n4. Combinação\n5. Permutação simples\n6. Permutação com repeticões
 7. Adição de matrizes\n8. Subtração de matrizes\n9. Multiplicação de matrizes\n10. Determinante de matrizes\n11. Triângulo de Pascal\n0. Sair");
-        let input: i32 = pega_inteiro();
+        let input: u8 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+            num as u8
+        } else {
+            continue;
+        };
 
         match input {
             0 => {
@@ -33,14 +24,13 @@ fn main() {
             1 => {
                 println!("\n======= FATORIAL =======");
                 println!("Digite um número para ver seu fatorial:");
-                let numero: i32 = pega_inteiro();
-
-                if numero < 0 {
-                    println!("Não é possível obter o fatorial de um número negativo. Tente novamente.");
+                let numero: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
                     continue;
-                }
+                };
 
-                let fat: i32 = fatorial(numero);
+                let fat: u128 = fatorial(numero);
                 
                 println!("O fatorial de {} é = {}", numero, fat);
             },
@@ -48,9 +38,28 @@ fn main() {
             2 => {
                 println!("\n======= ARRANJO =======");
                 println!("Digite a quantidade de elementos que deseja arranjar:");
-                let elementos: i32 = pega_inteiro();
+                let elementos: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if elementos > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
+
                 println!("Digite a quantidade de lugares em que os números serão arranjados:");
-                let lugares: i32 = pega_inteiro();
+                let lugares: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if lugares > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
 
                 if elementos < 1 || lugares < 1 {
                     println!("Valores menores que 1 não são válidos para elementos e lugares no arranjo. Tente novamente.");
@@ -60,16 +69,35 @@ fn main() {
                     continue;
                 }
 
-                let arrj: i32 = arranjo(elementos, lugares);
+                let arrj: u128 = arranjo(elementos, lugares);
                 println!("O arranjo de {} elementos em {} lugares é = {}", elementos, lugares, arrj);
             },
 
             3 => {
                 println!("\n======= BINOMIAL =======");
                 println!("Digite a ordem do número binomial:");
-                let n: i32 = pega_inteiro();
+                let n: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if n > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
+
                 println!("Digite a classe do número binomial:");
-                let k: i32 = pega_inteiro();
+                let k: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if k > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
 
                 if n < 1 || k < 1 {
                     println!("Valores menores que 1 não são válidos para ordem ou classe de um número binomial. Tente novamente.");
@@ -79,16 +107,35 @@ fn main() {
                     continue;
                 }
 
-                let binomial: i32 = binomial(n, k);
+                let binomial: u128 = binomial(n, k);
                 println!("O número binomial de ordem {} e classe {} é = {}", n, k, binomial);    
             },
 
             4 => {
                 println!("\n======= COMBINAÇÃO =======");
                 println!("Digite o número de elementos a serem combinados:");
-                let elementos: i32 = pega_inteiro();
+                let elementos: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if elementos > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
+
                 println!("Digite o número de lugares em que os elementos serão combinados:");
-                let lugares: i32 = pega_inteiro();
+                let lugares: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if lugares > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
 
                 if elementos < 1 || lugares < 1 {
                     println!("Valores menores que 1 não são válidos para o número de elementos ou lugares. Tente novamente.");
@@ -98,7 +145,7 @@ fn main() {
                     continue;
                 }
 
-                let combinacao: i32 = combinacao(elementos, lugares);
+                let combinacao: u128 = combinacao(elementos, lugares);
                    println!("O número de combinações possíveis com {} elementos tomados de {} em {} é = {}", elementos, lugares, lugares, combinacao);
 
             },
@@ -106,31 +153,52 @@ fn main() {
             5 => {
                 println!("\n======= PERMUTAÇÃO SIMPLES =======");
                 println!("Digite a quantidade de elementos que serão permutados:");
-                let elementos: i32 = pega_inteiro();
+                let elementos: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
-                if elementos < 1 {
+                if elementos > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                } else if elementos < 1 {
                     println!("Valor menor 1 não é válido para o número de elementos na permutação. Tente novamente.");
                     continue;
                 }
 
-                let permutacao = permutacao_simples(elementos);
+                let permutacao: u128 = permutacao_simples(elementos);
                 println!("O número de permutações possíveis com {} elementos é = {}", elementos, permutacao);
             },
 
             6 => {
                 println!("\n======= PERMUTAÇÃO COM REPETIÇÃO =======");
                 println!("Digite a quantidade de elementos que serão permutados:");
-                let elementos: i32 = pega_inteiro();
+                let elementos: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
+
+                if elementos > 34 {
+                    println!("Não é possível fazer o fatorial de números maiores que 34 neste programa. Tente novamente.");
+                    continue;
+                }
+
                 println!("Digite a quantidade de elementos que se repetem:");
-                let quant: i32 = pega_inteiro();
+                let quant: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
                 if quant > elementos {
                     println!("Não é possível que a quantidade de elementos que se repetem seja maior que a quantidade de elementos total. Tente novamente.");
                     continue;
                 }
 
-                let mut repeticoes: Vec<i32> = Vec::new();  // cria um vetor para armazenar valores i32
-                let mut soma_repeticoes: i32 = 0;
+                let mut repeticoes: Vec<u128> = Vec::new();  // cria um vetor para armazenar valores i32
+                let mut soma_repeticoes: u128 = 0;
 
                 if elementos < 1 || quant < 1{
                     println!("Valores menores que 1 não são válidos para elementos, quantidade de repetições e repetições. Tente novamente.");
@@ -140,7 +208,12 @@ fn main() {
                 // Iteração para pegar números e enfiá-los no vetor.
                 for i in 1..=quant {
                     println!("Digite a quantidade de repetições do elemento {}:", i);
-                    repeticoes.push(pega_inteiro());
+                    let numero: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                        num
+                    } else {
+                        continue;
+                    };
+                    repeticoes.push(numero);
                 }
 
                 for i in 0..repeticoes.len() {
@@ -154,7 +227,7 @@ fn main() {
 
                 println!("{soma_repeticoes}");
                 
-                let permutacao: i32 = permutacao_repeticao(elementos, repeticoes);
+                let permutacao: u128 = permutacao_repeticao(elementos, repeticoes);
 
                 println!("A quantidade de permutações de {} elementos {} elementos repetidos é = {}", elementos, quant, permutacao);
             },
@@ -162,140 +235,119 @@ fn main() {
             7 => {
                 println!("\n======= ADIÇÃO DE MATRIZES =======");
                 println!("Digite o número de linhas:");
-                let linhas: i32 = pega_inteiro();
+                let linhas: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
                 println!("Digite o número de colunas:");
-                let colunas: i32 = pega_inteiro();
+                let colunas: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
                 if linhas < 1 || colunas < 1 {
                     println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
                 continue;
                 }
 
-                let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-                let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-
                 println!("\nDigite os valores da primeira matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                        println!("mat1[{}][{}] =", i, j);
-                        mat1[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
+                let mat1: Vec<Vec<i128>> = pega_matriz(linhas, colunas);
 
                 println!("\nDigite os valores da segunda matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                        println!("mat2[{}][{}] =", i, j);
-                        mat2[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
+                let mat2: Vec<Vec<i128>> = pega_matriz(linhas, colunas);
 
                 let resultado = adicao_matrizes(mat1, mat2);
 
                 println!("\nResultado da adição:");
-                for linha in resultado {
-                    println!("{:?}", linha);
-                }
+                imprime_matriz(resultado);
             },
 
             8 => { 
                 println!("\n======= SUBTRAÇÃO DE MATRIZES =======");
                 println!("Digite o número de linhas:");
-                let linhas: i32 = pega_inteiro();
+                let linhas: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
                 println!("Digite o número de colunas:");
-                let colunas: i32 = pega_inteiro();
+                let colunas: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
                 if linhas < 1 || colunas < 1 {
                     println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
                 }
 
-                let mut mat1: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-                let mut mat2: Vec<Vec<i32>> = vec![vec![0; colunas as usize]; linhas as usize];
-
                 println!("\nDigite os valores da primeira matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                        println!("mat1[{}][{}] =", i, j);
-                        mat1[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
+                let mat1: Vec<Vec<i128>> = pega_matriz(linhas, colunas);
 
                 println!("\nDigite os valores da segunda matriz:");
-                for i in 0..linhas {
-                    for j in 0..colunas {
-                    println!("mat2[{}][{}] =", i, j);
-                    mat2[i as usize][j as usize] = pega_inteiro();
-                    }
-                }               
+                let mat2: Vec<Vec<i128>> = pega_matriz(linhas, colunas);              
 
                 let resultado = subtracao_matrizes(mat1, mat2);
 
                 println!("\nResultado da subtração:");
-                for linha in resultado {
-                    println!("{:?}", linha);
-                }
+                imprime_matriz(resultado);
             },
 
             9 => {
                 println!("\n======= MULTIPLICAÇÃO DE MATRIZES =======");
 
                 println!("Digite o número de linhas da primeira matriz:");
-                let l1: i32 = pega_inteiro();
+                let l1: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
                 println!("Digite o número de colunas da primeira matriz:");
-                let c1: i32 = pega_inteiro();
+                let c1: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
                 println!("Digite o número de linhas da segunda matriz:");
-                let l2: i32 = pega_inteiro();
+                let l2: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
                 println!("Digite o número de colunas da segunda matriz:");
-                let c2: i32 = pega_inteiro();
+                let c2: u128 = if let Inteiro::Unsigned(num) = pega_inteiro(false) {
+                    num
+                } else {
+                    continue;
+                };
 
                 if l1 < 1 || c1 < 1 || l2 < 1 || c2 < 1 {
                     println!("Não é possível que o número de linhas ou colunas seja menor que 1. Tente novamente.");
                     continue;
                 }
 
-
-                let mut mat1: Vec<Vec<i32>> = vec![vec![0; c1 as usize]; l1 as usize];
-                let mut mat2: Vec<Vec<i32>> = vec![vec![0; c2 as usize]; l2 as usize];
-
                 println!("\nDigite os valores da primeira matriz:");
-                for i in 0..l1 {
-                    for j in 0..c1 {
-                        println!("mat1[{}][{}] =", i, j);
-                        mat1[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
+                let mat1: Vec<Vec<i128>> = pega_matriz(l1, c1);
 
                 println!("\nDigite os valores da segunda matriz:");
-                for i in 0..l2 {
-                    for j in 0..c2 {
-                        println!("mat2[{}][{}] =", i, j);
-                        mat2[i as usize][j as usize] = pega_inteiro();
-                    }        
-                }
+                let mat2: Vec<Vec<i128>> = pega_matriz(l2, c2);
 
                 let resultado = multiplicacao_matrizes(mat1, mat2);
 
                 println!("\nResultado da multiplicação:");
-                for linha in resultado {
-                    println!("{:?}", linha);
-                }
+                imprime_matriz(resultado);
             },
 
             10 => {
                 println!("\n======= DETERMINANTE DE MATRIZES =======");
 
-                let mut mat1: Vec<Vec<i32>> = vec![vec![0; 2]; 2];
-
                 println!("\nDigite os valores da matriz:");
-                for i in 0..2 {
-                    for j in 0..2 {
-                        println!("mat1[{}][{}] =", i, j);
-                        mat1[i as usize][j as usize] = pega_inteiro();
-                    }
-                }
+                let matriz: Vec<Vec<i128>> = pega_matriz(2, 2);
 
-                let resultado = determinante_matrizes(mat1);
+                let resultado = determinante_matrizes(matriz);
 
                 println!("\nDeterminante da Matriz = {}", resultado);
             },
